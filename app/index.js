@@ -1,5 +1,6 @@
 const express = require('express');
 const devRoutes = require('./routes/dev.routes');
+const usersRoutes = require('./routes/users.routes');
 
 const app = express();
 
@@ -13,6 +14,7 @@ app.use((req, res, next) => {
 });
 
 app.use('/dev', devRoutes);
+app.use('/users', usersRoutes);
 
 try {
   app.listen(process.env.EXTERNAL_PORT || 3001);
