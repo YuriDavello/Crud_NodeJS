@@ -1,5 +1,4 @@
 const express = require('express');
-const devRoutes = require('./routes/dev.routes');
 const usersRoutes = require('./routes/users.routes');
 const sequelize = require('./util/database');
 const User = require('./models/users');
@@ -15,13 +14,12 @@ app.use((req, res, next) => {
   next();
 });
 
-app.use('/dev', devRoutes);
 app.use('/users', usersRoutes);
 
 (async () => {
   try {
     await sequelize.sync({ force: false });
-    app.listen(process.env.EXTERNAL_PORT || 3001);
+    app.listen(process.env.EXTERNAL_PORT);
   } catch (error) {
     console.error(error);
   }
